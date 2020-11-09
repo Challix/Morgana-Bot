@@ -119,4 +119,4 @@ client.on('message', message =>{
 });
 
 
-client.login('NjQ5MDI0ODM0NzU1NDkzOTA4.Xd2xeg.ngh34CuD1Gp_5ph7zmDuCU9X5R8');
+client.login( process.env.BOT_TOKEN );
