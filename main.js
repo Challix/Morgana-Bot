@@ -47,6 +47,8 @@ client.on('message', message =>{
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
+//Beginning of Command Conditionals
+//Ping Command
     if(command === 'ping'){
         //message.channel.send('pong!');
         client.commands.get('ping').execute(message, args);
@@ -62,7 +64,7 @@ client.on('message', message =>{
                 if(!(target_user.includes(args[0].substr(3,18))) ){
                     var react = '💩';
                     if(args.length == 2){
-                        react = args[1].match(/(\d+)/)
+                        react = args[1]
                         //react = args[1];
                     }
                     target_emoji.push(react);
@@ -117,4 +119,4 @@ client.on('message', message =>{
 });
 
 
-client.login(process.env.BOT_TOKEN);
+client.login('NjQ5MDI0ODM0NzU1NDkzOTA4.Xd2xeg.ngh34CuD1Gp_5ph7zmDuCU9X5R8');
