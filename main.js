@@ -103,6 +103,8 @@ client.on('message', message =>{
                     message.channel.send(args[0].concat(" Removed!"));
                 }
             }
+        } else {
+            message.channel.send("Invalid command:\nUse: `-remove @user`")
         }
     } else if(command == "help"){
 
