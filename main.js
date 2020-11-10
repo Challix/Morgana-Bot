@@ -33,8 +33,6 @@ client.on('message', message =>{
 //Looks at individual message authors and reacts to one
     var person = (message.author.discriminator);
     var user_id = (message.author.id);
-    //console.log(target_user.toString());
-    //console.log(user_id);
 
 //reacts whenever target user sends a message
     if(target_user.includes(user_id)){
@@ -50,22 +48,19 @@ client.on('message', message =>{
 //Beginning of Command Conditionals
 //Ping Command
     if(command === 'ping'){
-        //message.channel.send('pong!');
         client.commands.get('ping').execute(message, args);
     } else if(command === 'penis'){
         client.commands.get('size').execute(message, args, person);
+
 //react command
     } else if(command === 'react'){
-        //client.commands.get('react').execute(message, args, person);
 
-        //console.log(args.length);
         if(args.length != 0){
             if(args[0].startsWith("<@!")){
                 if(!(target_user.includes(args[0].substr(3,18))) ){
                     var react = '💩';
                     if(args.length == 2){
                         react = args[1]
-                        //react = args[1];
                     }
                     target_emoji.push(react);
                     target_user.push(args[0].substr(3,18));
@@ -77,7 +72,9 @@ client.on('message', message =>{
                 message.react('👯‍♀️');
                 message.react('🥳');
                 message.react('🤯');
-
+//dog command
+            } else if(command === 'dog'){
+                client.commands.get('dog').execute(message, args);
             } else if( args[0] == 'help'){
                 message.channel.send("The `-react` command has multiple possible arguements:\
                 \n`-react <@user>` - Reacts to every single one of @user's messages with a poop emoji!\
@@ -89,11 +86,9 @@ client.on('message', message =>{
                 message.react(args[0]);
             }
         } else {
-            /*
-            var bean = message.guild.emojis.cache.find(emoji => emoji.name == 'smile');
-            console.log(bean);*/
             message.react("💩");
         }
+
 //remove command
     } else if(command === 'remove'){
         if(args.length != 0){
