@@ -135,14 +135,22 @@ client.on('message', message =>{
 //Official help command
     } else if(command == "help"){
 
-        message.channel.send("The avaliable commands are:\
-        \n`-ping` - To get Ponged!\
-        \n`-penis` - To see the size of your penis!\
-        \n`-dog` - Sends a dog pic\
-        \n`-cat` - Sends a cat pic\
-        \n`-meme` - Sends a meme\
-        \n`-react <emoji>` - Will react to your message with the given emoji!\
-        \n\t\tUse `-react help` for more info.")
+        client.users.cache.get(user_id).send("Morgana Help Menu\
+        \n --------------------------------------------------------------------\
+        \n`-dog`:  Sends a dog picture!\
+        \n`-cat`:  Sends a cat picture!\
+        \n`-meme`:  Sends a meme!\
+        \n\
+        \n`-ping`:  To get Ponged!\
+        \n`-penis`:  To see the size of your member!\
+        \n\
+        \n`-react <emoji>`:  Will react to your message with the given emoji!\
+        \n\t-> /Use `-react help` for more info./\
+        \n\
+        \n`-github`:  Sends my github link!")
+        
+    } else if(command === 'github'){
+        message.channel.send('https://github.com/Challix/Morgana-Bot');
     }
 });
 
