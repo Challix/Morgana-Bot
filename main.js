@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const insulter = require('insult');
 
 const client = new Discord.Client();
 
@@ -107,6 +106,7 @@ client.on('message', message =>{
 
 //roast command
     }  else if(command === 'roast'){
+        const insulter = require('insult');
         message.channel.send(insulter.Insult());
 
 //-react instructions help command
