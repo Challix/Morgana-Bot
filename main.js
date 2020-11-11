@@ -100,8 +100,12 @@ client.on('message', message =>{
             let fetched = await api("dankmemes")
             message.channel.send(fetched);
         })();
+//roast command
+    }  else if(command === 'roast'){
+        const insulter = require('insult');
+        message.channel.send(insulter.Insult());
 //-react instructions help command
-    } else if(args[0] == 'help'){
+    }else if(args[0] == 'help'){
         message.channel.send("The `-react` command has multiple possible arguements:\
         \n`-react <@user>` - Reacts to every single one of @user's messages with a poop emoji!\
         \n`-react <@user> <emoji>` - Reacts to every single one of @user's messages with the given emoji!\
