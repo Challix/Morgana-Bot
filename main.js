@@ -79,13 +79,27 @@ client.on('message', message =>{
         message.react('🤯');
 //dog subreddit image command
     } else if(command === 'dog'){
-        client.commands.get('dog').execute(message, args);
+        ;(async() => {
+            const api = require('imageapi.js');
+            let fetched = await api("dogpictures")
+            message.channel.send(fetched); 
+            // let advanced = await api.advanced("dogpictures");
+            // console.log(advanced);
+        })();
 //cat subreddit image command
     } else if(command === 'cat'){
-        client.commands.get('cat').execute(message, args);
+        ;(async() => {
+            const api = require('imageapi.js');
+            let fetched = await api("cats")
+            message.channel.send(fetched); 
+        })();
 //memes subreddit image command
     } else if(command === 'meme'){
-        client.commands.get('meme').execute(message, args);
+        ;(async() => {
+            const api = require('imageapi.js');
+            let fetched = await api("dankmemes")
+            message.channel.send(fetched);
+        })();
 //-react instructions help command
     } else if(args[0] == 'help'){
         message.channel.send("The `-react` command has multiple possible arguements:\
@@ -114,10 +128,10 @@ client.on('message', message =>{
         message.channel.send("The avaliable commands are:\
         \n`-ping` - To get Ponged!\
         \n`-penis` - To see the size of your penis!\
-        \n`-react <emoji>` - Will react to your message with the given emoji!\
         \n`-dog` - Sends a dog pic\
         \n`-cat` - Sends a cat pic\
         \n`-meme` - Sends a meme\
+        \n`-react <emoji>` - Will react to your message with the given emoji!\
         \n\t\tUse `-react help` for more info.")
     }
 });
