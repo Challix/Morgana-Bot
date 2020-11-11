@@ -10,7 +10,6 @@ module.exports = {
 
         if(person == 5474){
             chance = 100;
-            //message.channel.send("Hi, Michael.\n");
         }
 
         if (chance <= 0.1){
