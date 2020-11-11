@@ -67,27 +67,32 @@ client.on('message', message =>{
                     message.channel.send("Will react to ".concat(args[0]," with a ", react));
                 } else {
                     message.channel.send("Cannot react to this person");
-                }    
-            } else if( args[0] == 'party'){
-                message.react('👯‍♀️');
-                message.react('🥳');
-                message.react('🤯');
-//dog command
-            } else if(command === 'dog'){
-                client.commands.get('dog').execute(message, args);
-            } else if( args[0] == 'help'){
-                message.channel.send("The `-react` command has multiple possible arguements:\
-                \n`-react <@user>` - Reacts to every single one of @user's messages with a poop emoji!\
-                \n`-react <@user> <emoji>` - Reacts to every single one of @user's messages with the given emoji!\
-                \n`-react party` - Have a reaction blast!\
-                \n`-remove <@user>` - To remove @user from react spam")
-
-            } else {
-                message.react(args[0]);
-            }
+                }
+            }  
         } else {
             message.react("💩");
-        }
+        }  
+//emoji party command
+    } else if( args[0] === 'party'){
+        message.react('👯‍♀️');
+        message.react('🥳');
+        message.react('🤯');
+//dog subreddit image command
+    } else if(command === 'dog'){
+        client.commands.get('dog').execute(message, args);
+//cat subreddit image command
+    } else if(command === 'cat'){
+        client.commands.get('cat').execute(message, args);
+//memes subreddit image command
+    } else if(command === 'meme'){
+        client.commands.get('meme').execute(message, args);
+//-react instructions help command
+    } else if(args[0] == 'help'){
+        message.channel.send("The `-react` command has multiple possible arguements:\
+        \n`-react <@user>` - Reacts to every single one of @user's messages with a poop emoji!\
+        \n`-react <@user> <emoji>` - Reacts to every single one of @user's messages with the given emoji!\
+        \n`-react party` - Have a reaction blast!\
+        \n`-remove <@user>` - To remove @user from react spam")
 
 //remove command
     } else if(command === 'remove'){
@@ -103,15 +108,18 @@ client.on('message', message =>{
         } else {
             message.channel.send("Invalid command:\nUse: `-remove @user`")
         }
+//Official help command
     } else if(command == "help"){
 
         message.channel.send("The avaliable commands are:\
         \n`-ping` - To get Ponged!\
         \n`-penis` - To see the size of your penis!\
         \n`-react <emoji>` - Will react to your message with the given emoji!\
+        \n`-dog` - Sends a dog pic\
+        \n`-cat` - Sends a cat pic\
+        \n`-meme` - Sends a meme\
         \n\t\tUse `-react help` for more info.")
     }
 });
-
 
 client.login( process.env.BOT_TOKEN );
