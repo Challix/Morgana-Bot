@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const insulter = require('insult');
 
 const client = new Discord.Client();
 
@@ -77,6 +78,7 @@ client.on('message', message =>{
         message.react('👯‍♀️');
         message.react('🥳');
         message.react('🤯');
+
 //dog subreddit image command
     } else if(command === 'dog'){
         ;(async() => {
@@ -86,6 +88,7 @@ client.on('message', message =>{
             // let advanced = await api.advanced("dogpictures");
             // console.log(advanced);
         })();
+
 //cat subreddit image command
     } else if(command === 'cat'){
         ;(async() => {
@@ -93,6 +96,7 @@ client.on('message', message =>{
             let fetched = await api("cats")
             message.channel.send(fetched); 
         })();
+
 //memes subreddit image command
     } else if(command === 'meme'){
         ;(async() => {
@@ -100,10 +104,11 @@ client.on('message', message =>{
             let fetched = await api("dankmemes")
             message.channel.send(fetched);
         })();
+
 //roast command
     }  else if(command === 'roast'){
-        const insulter = require('insult');
         message.channel.send(insulter.Insult());
+
 //-react instructions help command
     }else if(args[0] == 'help'){
         message.channel.send("The `-react` command has multiple possible arguements:\
@@ -126,6 +131,7 @@ client.on('message', message =>{
         } else {
             message.channel.send("Invalid command:\nUse: `-remove @user`")
         }
+
 //Official help command
     } else if(command == "help"){
 
