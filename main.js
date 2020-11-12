@@ -15,6 +15,10 @@ for(const file of commandFiles){
     client.commands.set(command.name, command);
 }
 
+//emoji array
+var emojis = [
+	'😄','😃','😀','😊','☺','😉','😍','😘','😚','😗','😙','😜','😝','😛','😳','😁','😔','😌','😒','😞','😣','😢','😂','😭','😪','😥','😰','😅','😓','😩','😫','😨','😱','😠','😡','😤','😖','😆','😋','😷','😎','😴','😵','😲','😟','😦','😧','😈','👿','😮','😬','😐','😕','😯','😶','😇','😏','😑','👲','👳','👮','👷','💂','👶','👦','👧','👨','👩','👴','👵','👱','👼','👸','😺','😸','😻','😽','😼','🙀','😿','😹','😾','👹','👺','🙈','🙉','🙊','💀','👽','💩','🔥','✨','🌟','💫','💥','💢','💦','💧','💤','💨','👂','👀','👃','👅','👄','👍','👎','👌','👊','✊','✌','👋','✋','👐','👆','👇','👉','👈','🙌','🙏','☝','👏','💪','🚶','🏃','💃','👫','👪','👬','👭','💏','💑','👯','🙆','🙅','💁','🙋','💆','💇','💅','👰','🙎','🙍','🙇','🎩','👑','👒','👟','👞','👡','👠','👢','👕','👔','👚','👗','🎽','👖','👘','👙','💼','👜','👝','👛','👓','🎀','🌂','💄','💛','💙','💜','💚','❤','💔','💗','💓','💕','💖','💞','💘','💌','💋','💍','💎','👤','👥','💬','👣','💭','🐶','🐺','🐱','🐭','🐹','🐰','🐸','🐯','🐨','🐻','🐷','🐽','🐮','🐗','🐵','🐒','🐴','🐑','🐘','🐼','🐧','🐦','🐤','🐥','🐣','🐔','🐍','🐢','🐛','🐝','🐜','🐞','🐌','🐙','🐚','🐠','🐟','🐬','🐳','🐋','🐄','🐏','🐀','🐃','🐅','🐇','🐉','🐎','🐐','🐓','🐕','🐖','🐁','🐂','🐲','🐡','🐊','🐫','🐪','🐆','🐈','🐩','🐾','💐','🌸','🌷','🍀','🌹','🌻','🌺','🍁','🍃','🍂','🌿','🌾','🍄','🌵','🌴','🌲','🌳','🌰','🌱','🌼','🌐','🌞','🌝','🌚','🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘','🌜','🌛','🌙','🌍','🌎','🌏','🌋','🌌','🌠','⭐','☀','⛅','☁','⚡','☔','❄','⛄','🌀','🌁','🌈','🌊','🎍','💝','🎎','🎒','🎓','🎏','🎆','🎇','🎐','🎑','🎃','👻','🎅','🎄','🎁','🎋','🎉','🎊','🎈','🎌','🔮','🎥','📷','📹','📼','💿','📀','💽','💾','💻','📱','☎','📞','📟','📠','📡','📺','📻','🔊','🔉','🔈','🔇','🔔','🔕','📢','📣','⏳','⌛','⏰','⌚','🔓','🔒','🔏','🔐','🔑','🔎','💡','🔦','🔆','🔅','🔌','🔋','🔍','🛁','🛀','🚿','🚽','🔧','🔩','🔨','🚪','🚬','💣','🔫','🔪','💊','💉','💰','💴','💵','💷','💶','💳','💸','📲','📧','📥','📤','✉','📩','📨','📯','📫','📪','📬','🔬','🔭','📰','🎨','🎬','🎤','🎧','🎼','🎵','🎶','🎹','🎻','🎺','🎷','🎸','👾','🎮','🎲','🎯','🏈','🏀','⚽','⚾','🎾','🎱','🏉','🎳','⛳','🚵','🚴','🏁','🏇','🏆','🎿','🏂','🏊','🏄','🎣','☕','🍵','🍶','🍼','🍺','🍻','🍸','🍹','🍷','🍴','🍕','🍔','🍟','🍗','🍖','🍝','🍛','🍤','🍱','🍣','🍥','🍙','🍘','🍚','🍜','🍲','🍢','🍡','🍳','🍞','🍩','🍮','🍦','🍨','🍧','🎂','🍰','🍪','🍫','🍬','🍭','🍯','🍎','🍏','🍊','🍋','🍒','🍇','🍉','🍓','🍑','🍈','🍌','🍐','🍍','🍠','🍆','🍅','🌽','🏠','🏡','🏫','🏰','⛺','🏭','🗼','🗾','🗻','🌄','🌅','🌃','🗽','🌉','🎠','🎡','⛲','🎢','🚢','⛵','🚤','🚣','⚓','🚀','✈','💺','🚁','🚂','🚊','🚉','🚞','🚆','🚄','🚅','🚈','🚇','🚝','🚋','🚃','🚎','🚌','🚍','🚙','🚘','🚗','🚕','🚖','🚛','🚚','🚨','🚓','🚔','🚒','🚑','🚐','🚲','🚡','🚟','🚠','🚜','💈','🚏','🎫','🚦','🚥','⚠','🚧','🔰','⛽','🏮','🎰','♨','🗿','🎪','🎭','📍','🚩','🆗','🎦','🈁','🚻','🚹','🚺','♿','❎','✅','✴','💟','🆚','📳','📴','🅰','🅱','🆎','🅾','💠','➿','♻','♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','⛎','🔯','💲'
+];
 //array of users for react command
 var target_user = [];
 var target_emoji = [];
@@ -23,9 +27,6 @@ var target_emoji = [];
 client.once('ready', () => {
     console.log('Morgana is Online!');
 });
-
-//Creating object
-var discrim = new Object();
 
 //Allows interaction for each message sent
 client.on('message', message =>{
@@ -49,16 +50,18 @@ client.on('message', message =>{
 //Ping Command
     if(command === 'ping'){
         client.commands.get('ping').execute(message, args);
+//size command
     } else if(command === 'penis'){
         client.commands.get('size').execute(message, args, person);
 
 //react command
     } else if(command === 'react'){
+        // console.log(args[0]);
 
         if(args.length != 0){
             if(args[0].startsWith("<@!")){
                 if(!(target_user.includes(args[0].substr(3,18))) ){
-                    var react = '💩';
+                    var react = emojis[Math.floor(Math.random() * emojis.length)];
                     if(args.length == 2){
                         react = args[1]
                     }
@@ -68,15 +71,37 @@ client.on('message', message =>{
                 } else {
                     message.channel.send("Cannot react to this person");
                 }
-            }  
-        } else {
-            message.react("💩");
-        }  
+//-react instructions help command
+            } else if(args[0] == 'help'){
+                reactCommands = "\
+                                \n`-react <@user>`:\n  Reacts to every single one of @user's messages with a random emoji!\
+                                \n`-react <@user> <emoji>`:\n  Reacts to every single one of @user's messages with the given emoji!\
+                                \n`-react party`:\n  Have a reaction blast!\
+                                \n`-remove <@user>`:\n  To remove @user from react spam"
+    
+                const reactEmbed = new Discord.MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle('__React Command Arguements__')
+                    .setAuthor('Created by Challix')
+                    .setDescription(reactCommands);
+        
+                client.users.cache.get(user_id).send(reactEmbed);  
 //emoji party command
-    } else if( args[0] === 'party'){
-        message.react('👯‍♀️');
-        message.react('🥳');
-        message.react('🤯');
+            } else if( args[0] === 'party'){
+                for (var i = 0; i < ((Math.floor(Math.random() * 10))+3); i++) {
+                    message.react(emojis[Math.floor(Math.random() * emojis.length)])
+                  }
+                //message.react('👯‍♀️');
+                //message.react('🥳');
+                //message.react('🤯');
+//custom emoji reaction
+            } else {
+                message.react(args[0])
+            }
+//default reaction
+        } else {
+            message.react(emojis[Math.floor(Math.random() * emojis.length)]);
+        }  
 
 //dog subreddit image command
     } else if(command === 'dog'){
@@ -92,7 +117,7 @@ client.on('message', message =>{
     } else if(command === 'cat'){
         ;(async() => {
             const api = require('imageapi.js');
-            let fetched = await api("cats")
+            let fetched = await api("cats");
             message.channel.send(fetched); 
         })();
 
@@ -104,18 +129,17 @@ client.on('message', message =>{
             message.channel.send(fetched);
         })();
 
+//embed test command
+    } else if(command === 'embed'){
+        const exampleEmbed = new Discord.MessageEmbed()
+            .setImage('https://static.wikia.nocookie.net/megamitensei/images/3/33/MorganaPQ2.png/revision/latest?cb=20180901210700');
+
+        message.channel.send(exampleEmbed);
+
 //roast command
     }  else if(command === 'roast'){
         const insulter = require('insult');
         message.channel.send(insulter.Insult());
-
-//-react instructions help command
-    }else if(args[0] == 'help'){
-        message.channel.send("The `-react` command has multiple possible arguements:\
-        \n`-react <@user>` - Reacts to every single one of @user's messages with a poop emoji!\
-        \n`-react <@user> <emoji>` - Reacts to every single one of @user's messages with the given emoji!\
-        \n`-react party` - Have a reaction blast!\
-        \n`-remove <@user>` - To remove @user from react spam")
 
 //remove command
     } else if(command === 'remove'){
@@ -134,9 +158,7 @@ client.on('message', message =>{
 
 //Official help command
     } else if(command == "help"){
-
-        client.users.cache.get(user_id).send("Morgana Help Menu\
-        \n --------------------------------------------------------------------\
+        helpCommands = "\
         \n`-dog`:  Sends a dog picture!\
         \n`-cat`:  Sends a cat picture!\
         \n`-meme`:  Sends a meme!\
@@ -144,10 +166,19 @@ client.on('message', message =>{
         \n`-ping`:  To get Ponged!\
         \n`-penis`:  To see the size of your member!\
         \n\
-        \n`-react <emoji>`:  Will react to your message with the given emoji!\
-        \n\t-> /Use `-react help` for more info./\
+        \n`-react`:  Will react to your message with a random emoji!\
+        \n\t->  Use `-react help` for more info.\
         \n\
-        \n`-github`:  Sends my github link!")
+        \n`-github`:  Sends my github link!"
+
+        const exampleEmbed = new Discord.MessageEmbed()
+        .setAuthor('Created by Challix', 'https://i.imgur.com/WCBoOM8.png')
+        .setColor('#FFFF00')
+        .setTitle('__Morgana Help Page__')
+        .setThumbnail('https://static.wikia.nocookie.net/megamitensei/images/3/33/MorganaPQ2.png/revision/latest?cb=20180901210700')
+        .setDescription(helpCommands);
+
+        client.users.cache.get(user_id).send(exampleEmbed)
         
     } else if(command === 'github'){
         message.channel.send('https://github.com/Challix/Morgana-Bot');
