@@ -1,4 +1,6 @@
 const imageAPI = require('nekos-image-api');
+const alexa = require('alexa-bot-api');
+let chatbot = new alexa("aw2plm")//access key free :)
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
@@ -43,7 +45,7 @@ var target_emoji = [];
 
 //Bot initiation sequence
 client.once('ready', () => {
-    console.log('Morgana V0.81 is Online!');
+    console.log('Morgana V0.85 is Online!');
 });
 
 //Allows interaction for each message sent
@@ -59,6 +61,7 @@ client.on('message', message =>{
         message.react(target_emoji[ind]);
     }    
 
+//Command handler
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
@@ -67,6 +70,7 @@ client.on('message', message =>{
 //Beginning of Command Conditionals
 //Ping Command
     if(command === 'ping'){
+        console.log(message.author.bot)
         client.commands.get('ping').execute(message, args);
 //size command
     } else if(command === 'penis'){
@@ -100,7 +104,7 @@ client.on('message', message =>{
                 const reactEmbed = new Discord.MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle('__React Command Arguements__')
-                    .setAuthor('Created by Challix')
+                    .setAuthor('Created by Challix', 'https://i.imgur.com/WCBoOM8.png')
                     .setDescription(reactCommands);
         
                 client.users.cache.get(user_id).send(reactEmbed);  
@@ -144,16 +148,16 @@ client.on('message', message =>{
 //memes subreddit image command
     } else if(command === 'meme'){
         let chance = Math.floor(Math.random()*2);
-        console.log(chance);
+
         if(chance == 0){
         imageAPI.memes.dank().then(res => {
             message.channel.send(res.url);
         });
-    } else if(chance == 1){
-        imageAPI.memes.gif().then(res => {
-            message.channel.send(res.url);
-        });
-    }
+        } else if(chance == 1){
+            imageAPI.memes.gif().then(res => {
+                message.channel.send(res.url);
+            });
+        }
 
 //Morgana command
     } else if(command === 'morgana'){
@@ -168,6 +172,16 @@ client.on('message', message =>{
     }  else if(command === 'roast'){
         const insulter = require('insult');
         message.channel.send(insulter.Insult());
+
+//chat bot command
+    }  else if(command === 'chat'){
+        var content = "";
+        
+        for (var i = 0; i < args.length; i++){
+            content += args[i];
+            content += ' ';
+        }
+        chatbot.getReply(content).then(r => message.channel.send( '<@!'.concat(user_id,'> ',r) ));
 
 //remove command
     } else if(command === 'remove'){
@@ -192,6 +206,7 @@ client.on('message', message =>{
         \n`-meme`:  Sends a meme!\
         \n\
         \n`-ping`:  To get Ponged!\
+        \n`-chat`:  Talk with Morgana!\
         \n`-penis`:  To see the size of your member!\
         \n\
         \n`-react`:  Will react to your message with a random emoji!\
