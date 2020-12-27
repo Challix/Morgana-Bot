@@ -1,4 +1,3 @@
-const imageAPI = require('nekos-image-api');
 const alexa = require('alexa-bot-api');
 let chatbot = new alexa("aw2plm");
 
