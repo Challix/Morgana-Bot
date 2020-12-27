@@ -1,6 +1,7 @@
 const imageAPI = require('nekos-image-api');
 const alexa = require('alexa-bot-api');
-let chatbot = new alexa("aw2plm")//access key free :)
+let chatbot = new alexa("aw2plm");
+
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
@@ -39,6 +40,7 @@ var emojis = [
     '🚟','🚠','🚜','💈','🚏','🎫','🚦','🚥','⚠','🚧','🔰','⛽','🏮','🎰','♨','🗿','🎪','🎭','📍','🚩','🆗','🎦','🈁','🚻','🚹','🚺','♿','❎','✅','✴','💟','🆚','📳','📴','🅰','🅱',
     '🆎','🅾','💠','➿','♻','♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','⛎','🔯','💲'
 ];
+
 //array of users for react command
 var target_user = [];
 var target_emoji = [];
@@ -107,7 +109,7 @@ client.on('message', message =>{
                     .setAuthor('Created by Challix', 'https://i.imgur.com/WCBoOM8.png')
                     .setDescription(reactCommands);
         
-                client.users.cache.get(user_id).send(reactEmbed);  
+                message.channel.send(reactEmbed);  
 //emoji party command
             } else if( args[0] === 'party'){
                 for (var i = 0; i < ((Math.floor(Math.random() * 10))+3); i++) {
@@ -125,48 +127,61 @@ client.on('message', message =>{
             message.react(emojis[Math.floor(Math.random() * emojis.length)]);
         }  
 
-//dog subreddit image command
-    } else if(command === 'dog'){
-        imageAPI.image.dog().then(res => {
-            message.channel.send(res.url);
-        });
-        /*
-        ;(async() => {
-            const api = require('imageapi.js');
-            let fetched = await api("dogpictures")
-            message.channel.send(fetched); 
-            // let advanced = await api.advanced("dogpictures");
-            // console.log(advanced);
-        })();*/
+//custom subreddit image command
+    } else if(command === 'subreddit' || command === 'sr'){
+        client.commands.get('subreddit').execute(message, args, Discord);
 
 //cat subreddit image command
     } else if(command === 'cat'){
-        imageAPI.image.cat().then(res => {
-            message.channel.send(res.url);
-        });
+        let chance = Math.floor(Math.random()*4);
+
+        if(chance == 0){
+            args[0] = 'cats';
+        } else if(chance == 1){
+            args[0] = 'CatGifs';
+        } else if(chance == 2){
+            args[0] = 'kittens';
+        } else if(chance == 3){
+            args[0] = 'IllegallySmolCats';
+        }
+        client.commands.get('subreddit').execute(message, args, Discord);
+
+//dog subreddit image command
+    } else if(command === 'dog'){
+        let chance = Math.floor(Math.random()*5);
+
+        if(chance == 0){
+            args[0] = 'rarepuppers';
+        } else if(chance == 1){
+            args[0] = 'Zoomies';
+        } else if(chance == 2){
+            args[0] = 'WhatsWrongWithYourDog';
+        } else if(chance == 3){
+            args[0] = 'dogpictures';
+        } else if(chance == 4){
+            args[0] = 'puppies';
+        }
+        client.commands.get('subreddit').execute(message, args, Discord);
 
 //memes subreddit image command
     } else if(command === 'meme'){
         let chance = Math.floor(Math.random()*2);
 
         if(chance == 0){
-        imageAPI.memes.dank().then(res => {
-            message.channel.send(res.url);
-        });
+            args[0] = 'dankmemes'
         } else if(chance == 1){
-            imageAPI.memes.gif().then(res => {
-                message.channel.send(res.url);
-            });
+            args[0] = 'memes'
         }
+        client.commands.get('subreddit').execute(message, args, Discord);
 
 //Morgana command
     } else if(command === 'morgana'){
-        const exampleEmbed = new Discord.MessageEmbed()
+        const morganaEmbed = new Discord.MessageEmbed()
             .setImage('https://static.wikia.nocookie.net/megamitensei/images/3/33/MorganaPQ2.png/revision/latest?cb=20180901210700')
             .setDescription("Hiya!")
             .setColor('#00000');
 
-        message.channel.send(exampleEmbed);
+        message.channel.send(morganaEmbed);
 
 //roast command
     }  else if(command === 'roast'){
@@ -197,31 +212,40 @@ client.on('message', message =>{
         } else {
             message.channel.send("Invalid command:\nUse: `-remove @user`")
         }
-
+// cyberpunk command
+    } else if (command == 'cyberpunk'){
+        message.channel.send("cyberpunk out");
 //Official help command
     } else if(command == "help"){
         helpCommands = "\
+        \n[NEW]\
+        \n`-subreddit <subreddit>`: Sends an image from any subreddit!\
+        \n->`-sr <subreddit>`\
+        \n\
         \n`-dog`:  Sends a dog picture!\
         \n`-cat`:  Sends a cat picture!\
         \n`-meme`:  Sends a meme!\
         \n\
         \n`-ping`:  To get Ponged!\
+        \n`-morgana`: Hey! that's me!\
         \n`-chat`:  Talk with Morgana!\
+        \n`-roast`:  Get roasted! \
         \n`-penis`:  To see the size of your member!\
         \n\
         \n`-react`:  Will react to your message with a random emoji!\
         \n\t->  Use `-react help` for more info.\
         \n\
-        \n`-github`:  Sends my github link!"
+        \n`-github`:  Sends my Github link!"
 
-        const exampleEmbed = new Discord.MessageEmbed()
+        const helpEmbed = new Discord.MessageEmbed()
         .setAuthor('Created by Challix', 'https://i.imgur.com/WCBoOM8.png')
         .setColor('#FFFF00')
         .setTitle('__Morgana Help Page__')
         .setThumbnail('https://static.wikia.nocookie.net/megamitensei/images/3/33/MorganaPQ2.png/revision/latest?cb=20180901210700')
         .setDescription(helpCommands);
 
-        client.users.cache.get(user_id).send(exampleEmbed)
+        message.channel.send(helpEmbed);
+        //client.users.cache.get(user_id).send(helpEmbed)
         
     } else if(command === 'github'){
         message.channel.send('https://github.com/Challix/Morgana-Bot');

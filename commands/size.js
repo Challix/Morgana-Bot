@@ -2,7 +2,7 @@ module.exports = {
     name: 'size',
     description: "this shows the size of your penis!",
     execute(message, args, person){
-        //Creates a random number from 0 to 15
+        //Generates a random number from 0 to 100
         var chance = Math.random()*100;
         var phrase = " ";
 
