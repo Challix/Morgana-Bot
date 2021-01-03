@@ -40,13 +40,12 @@ var emojis = [
     '🆎','🅾','💠','➿','♻','♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','⛎','🔯','💲'
 ];
 
-//array of users for react command
-var target_user = [];
-var target_emoji = [];
+//dictionary of users for react command
+var spammed = {};
 
 //Bot initiation sequence
 client.once('ready', () => {
-    console.log('Morgana V0.85 is Online!');
+    console.log('Morgana V0.86 is Online!');
 });
 
 //Allows interaction for each message sent
@@ -56,10 +55,15 @@ client.on('message', message =>{
     var person = (message.author.discriminator);
     var user_id = (message.author.id);
 
-//reacts whenever target user sends a message
-    if(target_user.includes(user_id)){
-        var ind = target_user.indexOf(user_id);
-        message.react(target_emoji[ind]);
+//Reacts whenever target user sends a message
+// console.log("spammed: ", spammed);
+    if(spammed[user_id]){
+        // console.log("emojis being used: ", spammed[user_id]);
+        
+        for(var i=0; i < spammed[user_id].length; i++) {
+            reaction = spammed[user_id][i];
+            message.react(reaction);
+         }
     }    
 
 //Command handler
@@ -71,60 +75,15 @@ client.on('message', message =>{
 //Beginning of Command Conditionals
 //Ping Command
     if(command === 'ping'){
-        console.log(message.author.bot)
         client.commands.get('ping').execute(message, args);
+
 //size command
     } else if(command === 'penis'){
         client.commands.get('size').execute(message, args, person);
 
 //react command
     } else if(command === 'react'){
-        // console.log(args[0]);
-
-        if(args.length != 0){
-            if(args[0].startsWith("<@!")){
-                if(!(target_user.includes(args[0].substr(3,18))) ){
-                    var react = emojis[Math.floor(Math.random() * emojis.length)];
-                    if(args.length == 2){
-                        react = args[1]
-                    }
-                    target_emoji.push(react);
-                    target_user.push(args[0].substr(3,18));
-                    message.channel.send("Will react to ".concat(args[0]," with a ", react));
-                } else {
-                    message.channel.send("Cannot react to this person");
-                }
-//-react instructions help command
-            } else if(args[0] == 'help'){
-                reactCommands = "\
-                                \n`-react <@user>`:\n  Reacts to every single one of @user's messages with a random emoji!\
-                                \n`-react <@user> <emoji>`:\n  Reacts to every single one of @user's messages with the given emoji!\
-                                \n`-react party`:\n  Have a reaction blast!\
-                                \n`-remove <@user>`:\n  To remove @user from react spam"
-    
-                const reactEmbed = new Discord.MessageEmbed()
-                    .setColor('#0099ff')
-                    .setTitle('__React Command Arguements__')
-                    .setAuthor('Created by Challix', 'https://i.imgur.com/WCBoOM8.png')
-                    .setDescription(reactCommands);
-        
-                message.channel.send(reactEmbed);  
-//emoji party command
-            } else if( args[0] === 'party'){
-                for (var i = 0; i < ((Math.floor(Math.random() * 10))+3); i++) {
-                    message.react(emojis[Math.floor(Math.random() * emojis.length)])
-                  }
-                //message.react('👯‍♀️');
-                //message.react('🥳');
-                //message.react('🤯');
-//custom emoji reaction
-            } else {
-                message.react(args[0])
-            }
-//default reaction
-        } else {
-            message.react(emojis[Math.floor(Math.random() * emojis.length)]);
-        }  
+        client.commands.get('react').execute(message, args, spammed, person, emojis);
 
 //custom subreddit image command
     } else if(command === 'subreddit' || command === 'sr'){
@@ -134,11 +93,11 @@ client.on('message', message =>{
     } else if(command === 'cat'){
         let chance = Math.floor(Math.random()*4);
 
-        if(chance == 0){
-            args[0] = 'cats';
-        } else if(chance == 1){
+        if(chance == 0 || chance == 1){
             args[0] = 'CatGifs';
-        } else if(chance == 2){
+        }/* else if(chance == 1){
+            args[0] = 'cats';
+        }*/ else if(chance == 2){
             args[0] = 'kittens';
         } else if(chance == 3){
             args[0] = 'IllegallySmolCats';
@@ -147,11 +106,14 @@ client.on('message', message =>{
 
 //dog subreddit image command
     } else if(command === 'dog'){
-        let chance = Math.floor(Math.random()*5);
+        let chance = Math.floor(Math.random()*2);
 
         if(chance == 0){
             args[0] = 'rarepuppers';
         } else if(chance == 1){
+            args[0] = 'WhatsWrongWithYourDog'
+        }/*
+         else if(chance == 1){
             args[0] = 'Zoomies';
         } else if(chance == 2){
             args[0] = 'WhatsWrongWithYourDog';
@@ -160,6 +122,7 @@ client.on('message', message =>{
         } else if(chance == 4){
             args[0] = 'puppies';
         }
+        */
         client.commands.get('subreddit').execute(message, args, Discord);
 
 //memes subreddit image command
@@ -188,7 +151,7 @@ client.on('message', message =>{
         message.channel.send(insulter.Insult());
 
 //chat bot command
-    }  else if(command === 'chat'){
+    } else if(command === 'chat'){
         var content = "";
         
         for (var i = 0; i < args.length; i++){
@@ -201,23 +164,57 @@ client.on('message', message =>{
     } else if(command === 'remove'){
         if(args.length != 0){
             if(args[0].startsWith("<@!")){
-                if((target_user.includes(args[0].substr(3,18))) ){
-                    var removed = target_user.indexOf(args[0].substr(3,18));
-                    delete target_user[removed];
-                    delete target_emoji[removed];
-                    message.channel.send(args[0].concat(" Removed!"));
+                delete spammed[args[0].substr(3,18)];
+                message.channel.send(args[0].concat(" Removed!"));
                 }
-            }
         } else {
             message.channel.send("Invalid command:\nUse: `-remove @user`")
         }
-// cyberpunk command
-    } else if (command == 'cyberpunk'){
-        message.channel.send("cyberpunk out");
+//suggestion command
+    } else if(command === 'suggest'){
+        suggestion = message.content.substr(9);
+        message.delete();
+        
+        client.users.cache.get("260546613410398218").send({embed: {
+            color: '#0e6b0e',
+            title: "__Annonymous Suggestion:__",
+            description: ('**' + suggestion + '**')
+          }
+        });
+        
+        const suggestEmbed = new Discord.MessageEmbed()
+        .setAuthor('Created by Challix', 'https://i.imgur.com/WCBoOM8.png')
+        .setColor('#0e6b0e')
+        .setTitle('Thank you! Your annonymous suggestion was sent!')
+        .setThumbnail('https://static.wikia.nocookie.net/megamitensei/images/3/33/MorganaPQ2.png/revision/latest?cb=20180901210700');
+
+        client.users.cache.get(user_id).send(suggestEmbed);
+
+//remove command
+    } else if(command === 'changelog' || command === 'cl'){
+        change_logs = "\
+        \n**__Morgana V0.86__**\
+        \n+ Reworked react command to handle multiple emojis\
+        \n+ Made `-cat` and `-dog` more consistent\
+        \n\
+        \n**__Future Features__**\
+        \n- Rework subreddit image scrapper to be more consistent through Reddit API instead of JSON\
+        \n- Implement a voice command feature"
+        
+        const changes = new Discord.MessageEmbed()
+        .setAuthor('Created by Challix', 'https://i.imgur.com/WCBoOM8.png')
+        .setColor('#008E44')
+        .setTitle('__ChangeLog__')
+        .setThumbnail('https://static.wikia.nocookie.net/megamitensei/images/3/33/MorganaPQ2.png/revision/latest?cb=20180901210700')
+        .setDescription(change_logs)
+        .setFooter("Feel free to send any ideas with `-suggest <idea>`!");
+
+        message.channel.send(changes);
+
 //Official help command
     } else if(command == "help"){
         helpCommands = "\
-        \n[NEW]\
+        \n**[NEW]**\
         \n`-subreddit <subreddit>`: Sends an image from any subreddit!\
         \n->`-sr <subreddit>`\
         \n\
@@ -233,6 +230,11 @@ client.on('message', message =>{
         \n\
         \n`-react`:  Will react to your message with a random emoji!\
         \n\t->  Use `-react help` for more info.\
+        \n\
+        \n**[NEW]**\
+        \n`-suggest`:  Sends an annonymous suggestion!\
+        \n`-changelog`:  Sends the latest changes to the bot!\
+        \n->`-cl`\
         \n\
         \n`-github`:  Sends my Github link!"
 
