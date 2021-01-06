@@ -13,11 +13,17 @@ module.exports = {
 // adds emojis to array
                 //adds given emojis
                 if(args.length > 1){
+                    let reactions = "";
                     for(i = 1; i < args.length; i++){
                         react = args[i];
+                        if( spammed[target].includes(react) ){
+                            message.channel.send("Sorry, can't react with duplicate emojis.");
+                            return;
+                        }
                         spammed[target].push(react);
-                        message.channel.send("Will react to ".concat(args[0]," with a ", react));
+                        reactions += (react + ' ');
                     }
+                    message.channel.send("Will react to ".concat(args[0]," with ", reactions));
                 // adds random emoji
                 } else{
                     spammed[target].push(react);
@@ -57,7 +63,17 @@ module.exports = {
                 //message.react('🤯');
 //custom emoji reaction
             } else {
-                message.react(args[0])
+                if(args.length > 1){
+                    for(i = 0; i < args.length; i++){
+                        react = args[i];
+                        message.react(react);
+                    }
+                // adds random emoji
+                } else{
+                    message.react(args[0]);
+                }
+
+                // message.react(args[0])
             }
 //default reaction
         } else {
