@@ -18,6 +18,7 @@ module.exports = {
                         react = args[i];
                         if( spammed[target].includes(react) ){
                             message.channel.send("Sorry, can't react with duplicate emojis.");
+                            delete spammed[target];
                             return;
                         }
                         spammed[target].push(react);
