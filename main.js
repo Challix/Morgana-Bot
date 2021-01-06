@@ -45,7 +45,7 @@ var spammed = {};
 
 //Bot initiation sequence
 client.once('ready', () => {
-    console.log('Morgana V0.86 is Online!');
+    console.log('Morgana V0.86.1 is Online!');
 });
 
 //Allows interaction for each message sent
@@ -193,9 +193,9 @@ client.on('message', message =>{
 //remove command
     } else if(command === 'changelog' || command === 'cl'){
         change_logs = "\
-        \n**__Morgana V0.86__**\
         \n+ Reworked react command to handle multiple emojis\
         \n+ Made `-cat` and `-dog` more consistent\
+        \n+ Fixed `-react` bot responses to be more succinct\
         \n\
         \n**__Future Features__**\
         \n- Rework subreddit image scrapper to be more consistent through Reddit API instead of JSON\
@@ -204,7 +204,7 @@ client.on('message', message =>{
         const changes = new Discord.MessageEmbed()
         .setAuthor('Created by Challix', 'https://i.imgur.com/WCBoOM8.png')
         .setColor('#008E44')
-        .setTitle('__ChangeLog__')
+        .setTitle('__Morgana V0.85.1 ChangeLog__')
         .setThumbnail('https://static.wikia.nocookie.net/megamitensei/images/3/33/MorganaPQ2.png/revision/latest?cb=20180901210700')
         .setDescription(change_logs)
         .setFooter("Feel free to send any ideas with `-suggest <idea>`!");
